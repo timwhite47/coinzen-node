@@ -1,0 +1,11 @@
+{
+  "device": {
+    "id": 1,
+    "name": null,
+    "activation_code": "UXWGPKJMGVPC",
+    "uid": "some_uid",
+    "user_id": null,
+    "created_at": "2017-02-28T07:36:28.146Z",
+    "updated_at": "2017-02-28T07:36:28.146Z"
+  }
+}

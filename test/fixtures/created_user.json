@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": 23,
+    "name": null,
+    "email": "Klein.Chad@Trycia.org",
+    "password_digest": "$2a$10$sBCMU1ROyYNDDf9Z/l184eC4yVqytspWNbIfzZrXZsfy1iFAxE3h2",
+    "bip45": "tpubD9r1Nf8NhhRb14BdSzGCiyL7FPtqJsdutXVk6wPimDt6oEAcuazJLpHKj4V7NAMFJqfsXTyCQ5xTGGHwKmuYWLVTUpjg2wvB3kiRphJ3P6R",
+    "created_at": "2017-03-01T08:31:06.215Z",
+    "updated_at": "2017-03-01T08:31:06.215Z"
+  }
+}
