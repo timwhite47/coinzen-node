@@ -8,6 +8,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _bitcoreLib = require('bitcore-lib');
 
+var _bitcoreMnemonic = require('bitcore-mnemonic');
+
+var _bitcoreMnemonic2 = _interopRequireDefault(_bitcoreMnemonic);
+
 var _device = require('./device');
 
 var _device2 = _interopRequireDefault(_device);
@@ -47,7 +51,8 @@ var Coinzen = function () {
           host = _ref$host === undefined ? 'http://localhost:3000' : _ref$host;
 
       var network = livenet ? 'livenet' : 'testnet';
-      var hdPrivKey = (0, _bitcoreLib.HDPrivateKey)(network);
+      var mnemonic = new _bitcoreMnemonic2.default();
+      var hdPrivKey = mnemonic.toHDPrivateKey();
       var bip45PrivKey = hdPrivKey.derive('m/45\'');
       var bip45 = bip45PrivKey.hdPublicKey.toString(network);
 
@@ -55,7 +60,7 @@ var Coinzen = function () {
         user: { email: email, password: password, password_confirmation: password_confirmation, bip45: bip45 }
       }).then(function (_ref2) {
         var user = _ref2.user;
-        return { user: user, hdPrivKey: hdPrivKey };
+        return { user: user, hdPrivKey: hdPrivKey, mnemonic: mnemonic };
       });
     }
   }, {
