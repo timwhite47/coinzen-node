@@ -430,7 +430,7 @@ big.js@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.1.3.tgz#4cada2193652eb3ca9ec8e55c9015669c9806978"
 
-bitcore-lib@^0.13.19:
+bitcore-lib@^0.13.19, bitcore-lib@^0.13.7:
   version "0.13.19"
   resolved "https://registry.yarnpkg.com/bitcore-lib/-/bitcore-lib-0.13.19.tgz#48af1e9bda10067c1ab16263472b5add2000f3dc"
   dependencies:
@@ -440,6 +440,13 @@ bitcore-lib@^0.13.19:
     elliptic "=3.0.3"
     inherits "=2.0.1"
     lodash "=3.10.1"
+
+bitcore-mnemonic@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/bitcore-mnemonic/-/bitcore-mnemonic-1.1.1.tgz#7410d8bd7bee0610a9b91a6799987cfc29e668ca"
+  dependencies:
+    bitcore-lib "^0.13.7"
+    unorm "^1.3.3"
 
 bn.js@=2.0.4, bn.js@^2.0.0:
   version "2.0.4"
@@ -955,6 +962,10 @@ type-detect@0.1.1:
 type-detect@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-1.0.0.tgz#762217cc06db258ec48908a1298e8b95121e8ea2"
+
+unorm@^1.3.3:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/unorm/-/unorm-1.4.1.tgz#364200d5f13646ca8bcd44490271335614792300"
 
 "util@>=0.10.3 <1":
   version "0.10.3"

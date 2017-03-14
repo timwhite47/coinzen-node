@@ -81,13 +81,14 @@ describe('Coinzen', () => {
         email: this.email,
         password_confirmation: this.password,
         password: this.password,
-      }).then(({ user, hdPrivKey }) => {
+      }).then(({ user, hdPrivKey, mnemonic }) => {
         const [url, params] = fetchMock.lastCall();
 
         this.subject = user;
         this.hdPrivKey = hdPrivKey;
         this.url = url;
         this.params = params;
+        this.mnemonic = mnemonic;
 
         done();
       });
@@ -105,6 +106,10 @@ describe('Coinzen', () => {
 
     it('stores bip45', function () {
       expect(this.subject.bip45).to.match(/tpub/);
+    });
+
+    it('has mnemonic code', function () {
+      expect(this.mnemonic.toString());
     });
   });
 });

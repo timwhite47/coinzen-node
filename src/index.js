@@ -1,4 +1,5 @@
 import { HDPrivateKey } from 'bitcore-lib';
+import Mnemonic from 'bitcore-mnemonic';
 import Device from './device';
 
 function postResource(url, body) {
@@ -18,13 +19,14 @@ class Coinzen {
 
   static createUser({ email, password, password_confirmation, livenet, host = 'http://localhost:3000' }) {
     const network = livenet ? 'livenet' : 'testnet';
-    const hdPrivKey = HDPrivateKey(network);
+    const mnemonic = new Mnemonic();
+    const hdPrivKey = mnemonic.toHDPrivateKey();
     const bip45PrivKey = hdPrivKey.derive('m/45\'');
     const bip45 = bip45PrivKey.hdPublicKey.toString(network);
 
     return postResource(`${host}/users`, {
       user: { email, password, password_confirmation, bip45 },
-    }).then(({ user }) => ({ user, hdPrivKey }));
+    }).then(({ user }) => ({ user, hdPrivKey, mnemonic }));
   }
 
   static authenticateUser({ email, password, host = 'http://localhost:3000' }) {

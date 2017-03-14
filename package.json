@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "actioncable-js": "^5.0.0-rc2",
-    "bitcore-lib": "^0.13.19"
+    "bitcore-lib": "^0.13.19",
+    "bitcore-mnemonic": "^1.1.1"
   }
 }
