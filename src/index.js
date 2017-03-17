@@ -1,4 +1,3 @@
-import { HDPrivateKey } from 'bitcore-lib';
 import Mnemonic from 'bitcore-mnemonic';
 import Device from './device';
 
