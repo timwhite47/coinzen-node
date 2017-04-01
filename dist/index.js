@@ -14,6 +14,10 @@ var _device = require('./device');
 
 var _device2 = _interopRequireDefault(_device);
 
+var _withdrawal = require('./withdrawal');
+
+var _withdrawal2 = _interopRequireDefault(_withdrawal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,6 +32,10 @@ function postResource(url, body) {
   }).then(function (response) {
     return response.json();
   });
+}
+
+function getResource(url) {
+  return fetch(url);
 }
 
 var Coinzen = function () {
@@ -86,6 +94,16 @@ var Coinzen = function () {
   }
 
   _createClass(Coinzen, [{
+    key: 'fetchUserStatus',
+    value: function fetchUserStatus(userId) {
+      var host = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'http://localhost:3000';
+
+      getResource(host + '/users/' + userId).then(function (_ref5) {
+        var user = _ref5.user;
+        return user;
+      });
+    }
+  }, {
     key: 'claimDevice',
     value: function claimDevice(deviceId, activationCode) {
       var host = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'http://localhost:3000';
@@ -94,9 +112,23 @@ var Coinzen = function () {
         device: {
           activation_code: activationCode
         }
-      }).then(function (_ref5) {
-        var device = _ref5.device;
+      }).then(function (_ref6) {
+        var device = _ref6.device;
         return device;
+      });
+    }
+  }, {
+    key: 'createWithdrawal',
+    value: function createWithdrawal(user_id, address) {
+      var host = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'http://localhost:3000';
+
+      return postResource(host + '/users/' + user_id + '/withdrawals', {
+        withdrawal: {
+          address: address
+        }
+      }).then(function (_ref7) {
+        var withdrawal = _ref7.withdrawal;
+        return withdrawal;
       });
     }
   }]);
@@ -104,5 +136,6 @@ var Coinzen = function () {
   return Coinzen;
 }();
 
+exports.Withdrawal = _withdrawal2.default;
 exports.Device = _device2.default;
 exports.default = Coinzen;
