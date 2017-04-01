@@ -1,5 +1,6 @@
 import Mnemonic from 'bitcore-mnemonic';
 import Device from './device';
+import Withdrawal from './withdrawal';
 
 function postResource(url, body) {
   return fetch(url, {
@@ -9,6 +10,10 @@ function postResource(url, body) {
     },
     body: JSON.stringify(body),
   }).then((response) => response.json());
+}
+
+function getResource(url) {
+  return fetch(url);
 }
 
 class Coinzen {
@@ -39,6 +44,11 @@ class Coinzen {
     this.jwt = jwt;
   }
 
+  fetchUserStatus(userId, host = 'http://localhost:3000') {
+    getResource(`${host}/users/${userId}`)
+      .then(({ user }) => user);
+  }
+
   claimDevice(deviceId, activationCode, host = 'http://localhost:3000') {
     return postResource(`${host}/devices/${deviceId}/claim`, {
       device: {
@@ -46,7 +56,15 @@ class Coinzen {
       },
     }).then(({ device }) => device);
   }
-}
 
+  createWithdrawal(user_id, address, host = 'http://localhost:3000') {
+    return postResource(`${host}/users/${user_id}/withdrawals`, {
+      withdrawal: {
+        address,
+      },
+    }).then(({ withdrawal }) => withdrawal);
+  }
+}
+exports.Withdrawal = Withdrawal;
 exports.Device = Device;
 export default Coinzen;
