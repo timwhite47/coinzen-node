@@ -39,7 +39,9 @@ function postResource(url, body) {
 }
 
 function getResource(url) {
-  return fetch(url);
+  return fetch(url).then(function (response) {
+    return response.json();
+  });
 }
 
 var Coinzen = function () {
@@ -102,7 +104,7 @@ var Coinzen = function () {
     value: function fetchUserStatus(userId) {
       var host = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'http://localhost:3000';
 
-      getResource(host + '/users/' + userId).then(function (_ref5) {
+      return getResource(host + '/users/' + userId).then(function (_ref5) {
         var user = _ref5.user;
         return user;
       });
@@ -119,6 +121,19 @@ var Coinzen = function () {
       }).then(function (_ref6) {
         var device = _ref6.device;
         return device;
+      });
+    }
+  }, {
+    key: 'createPayment',
+    value: function createPayment(deviceId, userId, satoshis, message) {
+      var host = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'http://localhost:3000';
+
+      return postResource(host + '/devices/' + deviceId + '/payments', {
+        payment: {
+          user_id: userId,
+          satoshis: satoshis,
+          message: message
+        }
       });
     }
   }, {

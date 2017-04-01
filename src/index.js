@@ -14,7 +14,7 @@ function postResource(url, body) {
 }
 
 function getResource(url) {
-  return fetch(url);
+  return fetch(url).then((response) => response.json());
 }
 
 class Coinzen {
@@ -46,7 +46,7 @@ class Coinzen {
   }
 
   fetchUserStatus(userId, host = 'http://localhost:3000') {
-    getResource(`${host}/users/${userId}`)
+    return getResource(`${host}/users/${userId}`)
       .then(({ user }) => user);
   }
 
@@ -58,8 +58,18 @@ class Coinzen {
     }).then(({ device }) => device);
   }
 
-  createWithdrawal(user_id, address, host = 'http://localhost:3000') {
-    return postResource(`${host}/users/${user_id}/withdrawals`, {
+  createPayment(deviceId, userId, satoshis, message, host = 'http://localhost:3000') {
+    return postResource(`${host}/devices/${deviceId}/payments`, {
+      payment: {
+        user_id: userId,
+        satoshis,
+        message,
+      },
+    });
+  }
+
+  createWithdrawal(userId, address, host = 'http://localhost:3000') {
+    return postResource(`${host}/users/${userId}/withdrawals`, {
       withdrawal: {
         address,
       },
