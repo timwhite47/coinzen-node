@@ -430,9 +430,9 @@ big.js@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.1.3.tgz#4cada2193652eb3ca9ec8e55c9015669c9806978"
 
-bitcore-lib@^0.14.0:
+"bitcore-lib@git+ssh://git@github.com/timwhite47/bitcore-lib.git":
   version "0.14.0"
-  resolved "https://registry.yarnpkg.com/bitcore-lib/-/bitcore-lib-0.14.0.tgz#21cb2359fe7b997a3b7b773eb7d7275ae37d644e"
+  resolved "git+ssh://git@github.com/timwhite47/bitcore-lib.git#f94c78d33c2070a0fc39b3fcaec4fb8efaf2bede"
   dependencies:
     bn.js "=2.0.4"
     bs58 "=2.0.0"
@@ -441,11 +441,11 @@ bitcore-lib@^0.14.0:
     inherits "=2.0.1"
     lodash "=3.10.1"
 
-bitcore-mnemonic@^1.1.1:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/bitcore-mnemonic/-/bitcore-mnemonic-1.2.3.tgz#007bf30a12dfa6c920cddc72f864c0bf2b272afa"
+"bitcore-mnemonic@git+ssh://git@github.com/timwhite47/bitcore-mnemonic.git":
+  version "1.2.2"
+  resolved "git+ssh://git@github.com/timwhite47/bitcore-mnemonic.git#34758d0afd3958e21ee621b02a95b5eb31b5c7cb"
   dependencies:
-    bitcore-lib "^0.14.0"
+    bitcore-lib "git+ssh://git@github.com/timwhite47/bitcore-lib.git"
     unorm "^1.3.3"
 
 bluebird@^3.5.0:

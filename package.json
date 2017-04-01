@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "actioncable-js": "^5.0.0-rc2",
-    "bitcore-mnemonic": "^1.1.1",
+    "bitcore-mnemonic": "git+ssh://git@github.com/timwhite47/bitcore-mnemonic.git",
     "bluebird": "^3.5.0"
   }
 }
