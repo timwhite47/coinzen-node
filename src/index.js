@@ -1,6 +1,7 @@
 import Mnemonic from 'bitcore-mnemonic';
 import Device from './device';
 import Withdrawal from './withdrawal';
+import Promise from 'bluebird';
 
 function postResource(url, body) {
   return fetch(url, {
@@ -63,6 +64,24 @@ class Coinzen {
         address,
       },
     }).then(({ withdrawal }) => withdrawal);
+  }
+
+  verifyBackup(backup, hdPrivKey) {
+    return new Promise((resolve, reject) => {
+      try {
+        const code = Mnemonic(backup);
+        const recoveredKey = code.toHDPrivateKey();
+
+        if (recoveredKey.xprivkey === hdPrivKey) {
+          resolve();
+        } else {
+          reject(new Error('Back up not valid, please make sure you typed it correctly and try again'));
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+
   }
 }
 exports.Withdrawal = Withdrawal;
